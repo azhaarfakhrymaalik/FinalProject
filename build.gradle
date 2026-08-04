@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.azhar'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 1. Cucumber Core & Test Engine
+    implementation 'io.cucumber:cucumber-java:7.22.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.22.0'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.22.0'
+
+    // 2. Selenium & WebDriverManager
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.20.0'
+    implementation("io.github.bonigarcia:webdrivermanager:5.9.2")
+
+    // 3. JUnit 5
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.platform:junit-platform-suite'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.10.1'
+
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.0'
+    testImplementation group: 'org.json', name: 'json', version: '20220924'
+    testImplementation group: 'io.rest-assured', name: 'json-path', version: '5.3.0'
+    testImplementation group: 'io.rest-assured', name: 'json-schema-validator', version: '5.3.0'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.0'
+
+    testImplementation 'org.slf4j:slf4j-simple:2.0.9'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+}
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+tasks.register('apiTest', JavaExec) {
+    dependsOn assemble, testClasses
+    mainClass = "io.cucumber.core.cli.Main"
+    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+    args = [
+            '--plugin', 'pretty',
+            '--plugin', 'html:reports/cucumber-api-report.html',
+            '--glue', 'StepDefinitions',
+            '--tags', '@api',
+            'src/test/resources/features'
+    ]
+}
