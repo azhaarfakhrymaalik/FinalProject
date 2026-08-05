@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import helper.Utility;
 import io.cucumber.java.*;
 
 import static helper.Utility.quitDriver;
@@ -16,14 +17,14 @@ public class Hooks {
     public static void tearDown() {
     }
 
-    @Before
+    @Before("@web")
     public void beforeTest() {
-        startDriver();
+        Utility.startDriver();
     }
 
-    @After
+    @After("@web")
     public void afterTest() throws InterruptedException {
         Thread.sleep(3000);
-        quitDriver();
+        Utility.quitDriver();
     }
 }
