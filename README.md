@@ -31,7 +31,7 @@ System Requirements
 
 Ensure your local environment meets the following prerequisites before running the tests:
 
-Java Development Kit (JDK): Version 17 (Recommended).
+Java Development Kit (JDK): Version 17 or 22 (Recommended).
 Gradle: Version 7.x or higher.
 Browser & Driver: Google Chrome
 IDE: IntelliJ IDEA.
