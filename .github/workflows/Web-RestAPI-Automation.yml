@@ -38,7 +38,7 @@ jobs:
 
       - name: Run WEB test
         if: always()
-        run: ./gradlew webTest
+        run: ./gradlew cucumber
 
        # Archive Test Result
       - name: Archive Test Result
