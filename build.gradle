@@ -39,11 +39,21 @@ dependencies {
 test {
     useJUnitPlatform()
     systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    ignoreFailures = false
 }
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
     }
+}
+
+test {
+    ignoreFailures = false
+}
+
+tasks.register('webTest', Test) {
+    useJUnitPlatform()
+    systemProperty "cucumber.filter.tags", "@web"
 }
 
 tasks.register('apiTest', JavaExec) {
