@@ -37,6 +37,7 @@ jobs:
         run: ./gradlew apiTest
 
       - name: Run WEB test
+        if: always()
         run: ./gradlew webTest
 
        # Archive Test Result
