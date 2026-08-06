@@ -35,3 +35,15 @@ Feature: Test Automation Rest API
     Then validation status code is equals 200
     Then validation response body update user
 
+  @api
+  Scenario: Test get user with invalid id
+    Given prepare url for "GET_USER_INVALID_ID"
+    And hit api get list users
+    Then validation status code is equals 404
+
+  @api
+  Scenario: Test update user with invalid id
+    Given prepare url for "UPDATE_USER_INVALID_ID"
+    And hit api update data
+    Then validation status code is equals 404
+

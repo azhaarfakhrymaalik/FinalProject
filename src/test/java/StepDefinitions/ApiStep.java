@@ -62,6 +62,5 @@ public class ApiStep {
     @Then("validation response body update user")
     public void validationResponseBodyUpdateUser() {
         apiPage.validationResponseBodyUpdateUser();
-
     }
 }

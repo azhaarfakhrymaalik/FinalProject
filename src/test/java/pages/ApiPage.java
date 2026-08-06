@@ -1,10 +1,10 @@
 package pages;
 
-import helper.Endpoint;
-import helper.Utility;
-import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import helper.Endpoint;
+import helper.Utility;
+
 import java.io.File;
 import java.util.List;
 
@@ -28,6 +28,15 @@ public class ApiPage {
             case "DELETE_USERS":
                 setURL = Endpoint.DELETE_USERS;
                 break;
+
+            // NEGATIVE CASE
+            case "GET_USER_INVALID_ID":
+                setURL = Endpoint.GET_USER_INVALID_ID;
+                break;
+            case "UPDATE_USER_INVALID_ID":
+                setURL = Endpoint.UPDATE_USER_INVALID_ID;
+                break;
+
             default:
                 System.out.println("input right url");
         }
@@ -62,7 +71,8 @@ public class ApiPage {
 
     public void validationResponseJsonWithJSONSchema(String filename) {
         File JSONFile = Utility.getJSONSchemaFile(filename);
-        res.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(JSONFile));
+        io.restassured.module.jsv.JsonSchemaValidator JsonSchemaValidator = io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema(JSONFile);
+        res.then().assertThat().body(JsonSchemaValidator);
     }
 
     public void validationResponseBodyPostCreateNewUser() {
@@ -104,6 +114,4 @@ public class ApiPage {
         assertThat(gender).isIn("female", "male");
         assertThat(status).isIn("active", "inactive");
     }
-
-
 }

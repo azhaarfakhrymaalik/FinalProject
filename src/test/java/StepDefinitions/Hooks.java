@@ -2,6 +2,7 @@ package StepDefinitions;
 
 import helper.Utility;
 import io.cucumber.java.*;
+import org.openqa.selenium.WebDriver;
 
 import static helper.Utility.quitDriver;
 import static helper.Utility.startDriver;
@@ -15,6 +16,10 @@ public class Hooks {
 
     @AfterAll
     public static void tearDown() {
+    }
+
+    public static WebDriver getDriver() {
+        return Utility.getDriver();
     }
 
     @Before("@web")

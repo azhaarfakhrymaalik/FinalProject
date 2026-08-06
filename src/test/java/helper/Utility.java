@@ -40,4 +40,8 @@ public class Utility {
     public static void quitDriver() {
         driver.quit();
     }
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
 }
