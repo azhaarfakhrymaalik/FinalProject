@@ -7,6 +7,7 @@ The framework implements a Behavior-Driven Development (BDD)
 approach using Cucumber, Selenium, and RestAssured, managed via Gradle.
 
 API test scenarios utilize endpoints from [gorest.co.in](https://gorest.co.in/), 
+
 while Web UI test scenarios are executed on [saucedemo.com](https://www.saucedemo.com/).
 
 ---
@@ -35,4 +36,9 @@ Java Development Kit (JDK): Version 17 or 22 (Recommended).
 Gradle: Version 7.x or higher.
 Browser & Driver: Google Chrome
 IDE: IntelliJ IDEA.
+
+Test Automation Reports (GitHub Actions)
+
+API Automation Test Report: [Link Execution Run](https://github.com/azhaarfakhrymaalik/FinalProject/actions/runs/1234567890)
+Web UI Automation Test Report: [Link Execution Run](https://github.com/azhaarfakhrymaalik/FinalProject/actions/runs/1234567890)
 <img width="1365" height="632" alt="image" src="https://github.com/user-attachments/assets/81727f4b-ac9d-499f-a0ec-0735b0512440" />
